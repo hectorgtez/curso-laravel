@@ -1,0 +1,8 @@
+Abrir PowerShell
+wsl
+cd Documents
+cd Cursos
+cd "Laravel 9 - Crea Aplicaciones y Sitios Web con PHP 8 y MVC"
+cd curso-laravel
+cd devstagram
+sail [up]/[down]
