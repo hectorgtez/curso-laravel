@@ -30,13 +30,13 @@ class PostController extends Controller
             "imagen" => "required"
         ]);
 
-        // Creación y almacenamiento de nuevo registro
-        Post::create([
-            "titulo" => $request->titulo,
-            "descripcion" => $request->descripcion,
-            "imagen" => $request->imagen,
-            "user_id" => auth()->user()->username
-        ]);
+        // Creacion y almacenamiento de nuevo registro
+        // Post::create([
+        //     "titulo" => $request->titulo,
+        //     "descripcion" => $request->descripcion,
+        //     "imagen" => $request->imagen,
+        //     "user_id" => auth()->user()->username
+        // ]);
 
         // Otra forma de crear el registro
         // $post = new Post();
@@ -44,6 +44,14 @@ class PostController extends Controller
         // $post->descripcion = $request->descripcion;
         // $post->imagen = $request->imagen;
         // $post->user_id = auth()->user()->username;
+
+        // Creacion y almacenamiento de registro con relaciones
+        $request->user()->posts()->create([
+            "titulo" => $request->titulo,
+            "descripcion" => $request->descripcion,
+            "imagen" => $request->imagen,
+            "user_id" => auth()->user()->username
+        ]);
 
         return redirect()->route("posts.index", auth()->user()->username);
     }
