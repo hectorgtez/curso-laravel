@@ -48,4 +48,8 @@ class User extends Authenticatable
         // Relación One-to-Many
         return $this->hasMany(Post::class);
     }
+
+    public function likes() {
+        return $this->hasMany(Like::class);
+    }
 }
