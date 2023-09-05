@@ -44,12 +44,25 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    // Comprobar si un usuario ya sigue a otro
+    public function verifyFollower(User $user) {
+        return $this->followers->contains($user->id);
+    }
+
+    // Relaciones
     public function posts() {
-        // Relación One-to-Many
         return $this->hasMany(Post::class);
     }
 
     public function likes() {
         return $this->hasMany(Like::class);
+    }
+
+    public function followers() {
+        return $this->belongsToMany(User::class, "followers", "user_id", "follower_id");
+    }
+
+    public function followings() {
+        return $this->belongsToMany(User::class, "followers", "follower_id", "user_id");
     }
 }

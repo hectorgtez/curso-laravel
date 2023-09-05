@@ -35,7 +35,7 @@
                         </form>
                     @endif
                 @endauth
-                <p class="font-bold">{{$post->likes->count()}} <span class="font-normal">Likes</span></p>
+                <p class="font-bold">{{$post->likes->count()}} <span class="font-normal">@choice("Like|Likes", $post->likes->count())</span></p>
             </div>
             <div>
                 <p class="font-bold">{{$post->user->username}}</p>
