@@ -14,8 +14,17 @@
                 @endauth
             </div>
             <div>
-                <a href="{{route('posts.index', $user)}}" class="font-bold">{{$post->user->username}}</a>
-                <p class="text-sm text-gray-500">{{$post->created_at->diffForHumans()}}</p>
+                <div class="flex gap-3 items-center">
+                    <div class="w-10">
+                        <a href="{{route('posts.index', $user)}}">
+                            <img src="{{$user->imagen ? asset('perfiles').'/'.$user->imagen : asset('img/usuario.png')}}" class="rounded-full" alt="Imagen de autor">
+                        </a>
+                    </div>
+                    <div>
+                        <a href="{{route('posts.index', $user)}}" class="font-bold">{{$post->user->username}}</a>
+                        <p class="text-sm text-gray-500">{{$post->created_at->diffForHumans()}}</p>
+                    </div>
+                </div>
                 <p class="mt-5">{{$post->descripcion}}</p>
                 @auth
                     @if ($post->user_id == auth()->user()->id)
@@ -52,10 +61,17 @@
                 <div class="bg-white shadow mb-5 max-h-96 overflow-y-scroll mt-10">
                     @if ($post->comentarios->count())
                         @foreach ($post->comentarios as $comentario)
-                            <div class="p-5 border-gray-300 border-b">
-                                <a href="{{route('posts.index', $comentario->user)}}" class="font-bold">{{$comentario->user->username}}</a>
-                                <p>{{$comentario->comentario}}</p>
-                                <p class="text-sm text-gray-500">{{$comentario->created_at->diffForHumans()}}</p>
+                            <div class="p-5 border-gray-300 border-b flex gap-3 items-center">
+                                <div class="w-10">
+                                    <a href="{{route('posts.index', $comentario->user)}}">
+                                        <img src="{{$comentario->user->imagen ? asset('perfiles').'/'.$comentario->user->imagen : asset('img/usuario.png')}}" class="rounded-full" alt="Imagen de autor">
+                                    </a>
+                                </div>
+                                <div>
+                                    <a href="{{route('posts.index', $comentario->user)}}" class="font-bold">{{$comentario->user->username}}</a>
+                                    <p>{{$comentario->comentario}}</p>
+                                    <p class="text-sm text-gray-500">{{$comentario->created_at->diffForHumans()}}</p>
+                                </div>
                             </div>
                         @endforeach
                     @else
