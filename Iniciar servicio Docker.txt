@@ -1,4 +1,0 @@
-Abrir PowerShell
-wsl
-cd Documents\Cursos\curso-laravel\devstagram
-sail [up]/[down]
