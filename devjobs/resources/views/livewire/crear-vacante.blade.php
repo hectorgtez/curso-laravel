@@ -103,7 +103,14 @@
             class="block mt-1 w-full"
             type="file"
             wire:model="imagen"
+            accept="image/*"
         />
+        <div class="my-5 w-80">
+            @if ($imagen)
+                Imagen:
+                <img src="{{ $imagen->temporaryUrl() }}" alt="Imagen subida">
+            @endif
+        </div>
         @error('imagen')
             <livewire:mostrar-alerta :message="$message"/>
         @enderror
