@@ -6,7 +6,6 @@ use App\Models\Vacante;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\Storage;
-use Symfony\Component\Console\Logger\ConsoleLogger;
 
 class MostrarVacantes extends Component
 {
