@@ -23,7 +23,7 @@
                             </div>
                             <div class="mt-5 mb-1 md:mt-0 md:mb-0">
                                 <a
-                                    href="#"
+                                    href="{{ route('candidatos.index', $notificacion->data['id_vacante']) }}"
                                     class="text-center items-center px-4 py-2 bg-gray-800 dark:bg-gray-200 border border-transparent rounded-md font-semibold text-xs text-white dark:text-gray-800 uppercase tracking-widest hover:bg-gray-700 dark:hover:bg-white focus:bg-gray-700 dark:focus:bg-white active:bg-gray-900 dark:active:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150"
                                 >
                                     Candidatos

@@ -11,29 +11,31 @@
                 </div>
 
                 @auth
-                    <!-- Navigation Links -->
-                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <x-nav-link :href="route('vacantes.index')" :active="request()->routeIs('vacantes.index')">
-                            {{ __('Vacantes') }}
-                        </x-nav-link>
-                        <x-nav-link :href="route('vacantes.create')" :active="request()->routeIs('vacantes.create')">
-                            {{ __('Crear vacante') }}
-                        </x-nav-link>
-                    </div>
+                    @can('create', App\Models\Vacante::class)
+                        <!-- Navigation Links -->
+                        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                            <x-nav-link :href="route('vacantes.index')" :active="request()->routeIs('vacantes.index')">
+                                {{ __('Vacantes') }}
+                            </x-nav-link>
+                            <x-nav-link :href="route('vacantes.create')" :active="request()->routeIs('vacantes.create')">
+                                {{ __('Crear vacante') }}
+                            </x-nav-link>
+                        </div>
+                    @endcan
                 @endauth
             </div>
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 @auth
-                    @if (auth()->user()->rol === 2)
+                    @can('create', App\Models\Vacante::class)
                         <a
                             href="{{ route('notificaciones') }}"
                             class="mr-2 w-7 h-7 flex flex-col justify-center items-center text-gray-500 dark:text-gray-300 bg-white dark:bg-gray-600 hover:bg-gray-700 text-sm font-extrabold rounded-full transition ease-in-out duration-150"
                         >
                             {{ Auth::user()->unreadNotifications->count() }}
                         </a>
-                    @endif
+                    @endcan
 
                     <x-dropdown align="right" width="48">
                         <x-slot name="trigger">
