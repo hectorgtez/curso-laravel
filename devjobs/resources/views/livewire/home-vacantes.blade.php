@@ -1,5 +1,5 @@
 <div>
-
+    <livewire:filtrar-vacantes/>
     <div class="py-12">
         <div class="max-w-7xl mx-auto">
             <h3 class="font-extrabold text-4xl text-gray-300 mb-12 ml-3">Vacantes disponibles</h3>
@@ -14,6 +14,8 @@
                                 {{ $vacante->titulo }}
                             </a>
                             <p class="text-gray-400 text-base mb-1">{{ $vacante->empresa }}</p>
+                            <p class="text-gray-400 text-base mb-1">{{ $vacante->categoria->categoria }}</p>
+                            <p class="text-gray-400 text-base mb-1">{{ $vacante->salario->salario }}</p>
                             <p class="font-bold text-sm text-gray-400">
                                 Último día para postularse:
                                 <span class="font-normal">{{ $vacante->ultimo_dia->format('d/m/Y') }}</span>
@@ -31,6 +33,9 @@
                 @empty
                     <p class="p-3 text-center text-sm text-gray-400">No hay vacantes disponibles...</p>
                 @endforelse
+            </div>
+            <div class="mt-10">
+                {{ $vacantes->links("pagination::tailwind") }}
             </div>
         </div>
     </div>
