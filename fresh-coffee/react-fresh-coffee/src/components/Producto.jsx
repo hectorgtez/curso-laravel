@@ -1,9 +1,10 @@
+/* eslint-disable react/prop-types */
 import { formatearDinero } from "../helpers"
+import useQuiosco from "../hooks/useQuiosco"
 
-// eslint-disable-next-line react/prop-types
 export default function Producto({producto}) {
-  // eslint-disable-next-line react/prop-types
   const { nombre, imagen, precio } = producto
+  const { handleClickModal, handleSetProducto } = useQuiosco();
 
   return (
     <div className="border p-3 shadow bg-white rounded-md">
@@ -20,7 +21,12 @@ export default function Producto({producto}) {
         </p>
         <button
           type="button"
-          className="bg-indigo-600 hover:bg-indigo-800 text-white w-full mt-5 p-3 font-bold rounded-md transition ease-in-out duration-150"
+          onClick={ () => {
+            handleSetProducto(producto);
+            handleClickModal();
+          }}
+          className="bg-indigo-600 hover:bg-indigo-800 text-white w-full
+            mt-5 p-3 font-bold rounded-md transition ease-in-out duration-150"
         >
           Agregar
         </button>
