@@ -1,7 +1,11 @@
+import { formatearDinero } from '../helpers';
 import useQuiosco from '../hooks/useQuiosco'
+import ResumenProducto from './ResumenProducto';
 
 export default function Resumen() {
-  const { pedido } = useQuiosco();
+  const { pedido, total } = useQuiosco();
+
+  const comprobarPedido = () => pedido.length === 0
 
   return (
     <aside className="w-72 h-screen overflow-y-scroll p-5">
@@ -14,19 +18,27 @@ export default function Resumen() {
         {pedido.length === 0 ? (
           <p className="text-center text-lg">No hay elementos en tu pedido aún...</p>
         ) : (
-          <p>Si hay algo...</p>
+          pedido.map(producto => (
+            <ResumenProducto
+              key={ producto.id }
+              producto={ producto }
+            />
+          ))
         )}
 
         <p className="text-xl mt-10 font-semibold">
-          Total: { '' }
+          Total: { formatearDinero(total) }
         </p>
 
         <form className="w-full">
           <div className="mt-5">
             <input type="submit"
               value="Confirmar pedido"
-              className="bg-green-600 hover:bg-green-700 text-white px-5 py-2 font-bold
-                text-center w-full rounded cursor-pointer transition ease-in-out duration-150"
+              disabled={ comprobarPedido() }
+              className={`${comprobarPedido() ? 
+                'bg-gray-300' : 'bg-green-600 hover:bg-green-700'} text-white 
+                px-5 py-2 font-bold text-center w-full rounded cursor-pointer
+                transition ease-in-out duration-150`}
             />
           </div>
         </form>
