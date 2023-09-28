@@ -36,8 +36,8 @@ export default function Resumen() {
               value="Confirmar pedido"
               disabled={ comprobarPedido() }
               className={`${comprobarPedido() ? 
-                'bg-gray-300' : 'bg-green-600 hover:bg-green-700'} text-white 
-                px-5 py-2 font-bold text-center w-full rounded cursor-pointer
+                'bg-gray-300' : 'bg-green-600 hover:bg-green-700'}
+                text-white p-3 font-bold text-center w-full rounded cursor-pointer
                 transition ease-in-out duration-150`}
             />
           </div>
