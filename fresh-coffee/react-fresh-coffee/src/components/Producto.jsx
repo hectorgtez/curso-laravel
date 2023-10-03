@@ -2,9 +2,9 @@
 import { formatearDinero } from "../helpers"
 import useQuiosco from "../hooks/useQuiosco"
 
-export default function Producto({producto}) {
+export default function Producto({producto, botonAgregar = false, botonDisponible = false}) {
   const { nombre, imagen, precio } = producto
-  const { handleClickModal, handleSetProducto } = useQuiosco();
+  const { handleClickModal, handleSetProducto, handleClickProductoAgotado } = useQuiosco();
 
   return (
     <div className="border p-3 shadow bg-white rounded-md">
@@ -19,17 +19,31 @@ export default function Producto({producto}) {
         <p className="mt-5 font-black text-2xl text-amber-500">
           { formatearDinero(precio) }
         </p>
-        <button
-          type="button"
-          onClick={ () => {
-            handleSetProducto(producto);
-            handleClickModal();
-          }}
-          className="bg-indigo-600 hover:bg-indigo-800 text-white w-full
-            mt-5 p-3 font-bold rounded-md transition ease-in-out duration-150"
-        >
-          Agregar
-        </button>
+
+        { botonAgregar && (
+          <button
+            type="button"
+            onClick={ () => {
+              handleSetProducto(producto);
+              handleClickModal();
+            }}
+            className="bg-indigo-600 hover:bg-indigo-800 text-white w-full
+              mt-5 p-3 font-bold rounded-md transition ease-in-out duration-150"
+          >
+            Agregar
+          </button>
+        ) }
+
+        { botonDisponible && (
+          <button
+            type="button"
+            onClick={ () => handleClickProductoAgotado(producto.id) }
+            className="bg-indigo-600 hover:bg-indigo-800 text-white w-full
+              mt-5 p-3 font-bold rounded-md transition ease-in-out duration-150"
+          >
+            Producto agotado
+          </button>
+        ) }
       </div>
     </div>
   )

@@ -9,7 +9,7 @@ export default function AdminSidebar() {
     <aside className="md:w-72 h-screen">
       <div className="p-4">
         <img
-          src="img/logo.svg"
+          src="/img/logo.svg"
           alt="Logotipo de la aplicación"
           className="w-32 mx-auto"
         />
