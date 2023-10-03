@@ -37,7 +37,7 @@ export default function AdminSidebar() {
       <div className="my-5 px-5">
           <button
             type="button"
-            onSubmit={ logout }
+            onClick={ logout }
             className="text-center bg-red-500 w-full p-3 font-bold text-white truncate rounded-md"
           >
             Cerrar sesión

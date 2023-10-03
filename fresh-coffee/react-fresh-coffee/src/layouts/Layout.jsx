@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { Outlet } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import Modal from 'react-modal'
@@ -24,7 +23,7 @@ const customStyles = {
 Modal.setAppElement('#root');
 
 export default function Layout() {
-  const { user, error } = useAuth({ middleware: 'auth' });
+  useAuth({ middleware: 'auth' });
   const { modal } = useQuiosco();
 
   return (
